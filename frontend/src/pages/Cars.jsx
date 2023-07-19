@@ -20,7 +20,7 @@ const Cars = () => {
 
   }
   const handlecars=(e)=>{
-    axios.get(`http://localhost:8080/car?model=${e.target.value}`)
+    axios.get(`https://attryb-uw7d.onrender.com/car?model=${e.target.value}`)
     .then((res)=>{
       setPreCar(res.data)
     }).catch((er)=>{
@@ -29,7 +29,11 @@ const Cars = () => {
   }
 const handeSubmit=(e)=>{
 let obj={...inventory,...preCar}
-    axios.post("http://localhost:8080/inventory",obj)
+    axios.post("https://attryb-uw7d.onrender.com/inventory",obj,{
+      headers: {
+        "Authorization": localStorage.getItem("buycToken")
+    }
+    })
     .then((res)=>{
       console.log(res.data);
       alert(res.data)
@@ -43,7 +47,7 @@ let obj={...inventory,...preCar}
 
  useEffect(()=>{
 
-  axios.get("http://localhost:8080/inventory").then((res)=>{
+  axios.get("https://attryb-uw7d.onrender.com/inventory").then((res)=>{
 
     setShowCar(res.data);
   })
@@ -54,7 +58,7 @@ let obj={...inventory,...preCar}
    
 
 
-  axios.get("http://localhost:8080/car").then((res)=>{
+  axios.get("https://attryb-uw7d.onrender.com/car").then((res)=>{
     setAllcars(res.data);
   })
   .catch((err)=>{

@@ -19,11 +19,11 @@ const handelSubmit=(e)=>{
         return
     }
     else{
-        axios.post("http://localhost:8080/api/signup",{email:data.email,password:data.password})
+        axios.post("https://attryb-uw7d.onrender.com/api/signup",{email:data.email,password:data.password})
         .then((res)=>{
             console.log(res.data);
             alert(res.data)
-            window.location='/login'
+            window.location='/'
         }).catch((err)=>{
             console.log(err);
         })

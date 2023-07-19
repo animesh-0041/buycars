@@ -13,11 +13,12 @@ const Login = () => {
     }
     const handelSubmit=(e)=>{
         e.preventDefault()
-        axios.post("http://localhost:8080/api/login",data)
+        axios.post("https://attryb-uw7d.onrender.com/api/login",data)
         .then((res)=>{
          
             if(res.data.msg=="Login Succesfull"){
                 localStorage.setItem("buycToken",res.data.token)
+                localStorage.setItem("buycUserID",res.data.userID)
                 alert("Login Successfull")
                 window.location='/cars'
             }
