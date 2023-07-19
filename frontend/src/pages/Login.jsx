@@ -19,6 +19,7 @@ const Login = () => {
             if(res.data.msg=="Login Succesfull"){
                 localStorage.setItem("buycToken",res.data.token)
                 alert("Login Successfull")
+                window.location='/cars'
             }
             else{
                 alert(res.data.msg)
@@ -36,11 +37,11 @@ const Login = () => {
             <form onSubmit={handelSubmit}>
                 <FormControl>
                     <FormLabel>Email:</FormLabel>
-                    <Input placeholder='Enter your email' name='email' onChange={handelChange}/>
+                    <Input placeholder='Enter your email' name='email' onChange={handelChange} required/>
                 </FormControl>
                 <FormControl>
                     <FormLabel>Password:</FormLabel>
-                    <Input placeholder='Enter your password' type='password' name='password' onChange={handelChange}/>
+                    <Input placeholder='Enter your password' type='password' name='password' onChange={handelChange} required/>
                 </FormControl>
                 <Box textAlign={'center'} mt={'10px'}>
                 <Button type='submit' colorScheme={'green'}>Login</Button>

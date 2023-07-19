@@ -39,15 +39,15 @@ const handelSubmit=(e)=>{
             <form onSubmit={handelSubmit}>
                 <FormControl>
                     <FormLabel>Email:</FormLabel>
-                    <Input placeholder='Enter your email' name='email' onChange={handeChange}/>
+                    <Input placeholder='Enter your email' name='email' onChange={handeChange} required/>
                 </FormControl>
                 <FormControl>
                     <FormLabel>Password:</FormLabel>
-                    <Input placeholder='Enter your password' type='password' name='password' onChange={handeChange}/>
+                    <Input placeholder='Enter your password' type='password' name='password' onChange={handeChange} required/>
                 </FormControl>
                 <FormControl>
                     <FormLabel>Confirm Password:</FormLabel>
-                    <Input placeholder='Re-enter your password' type='password' name='confirmPassword' onChange={handeChange}/>
+                    <Input placeholder='Re-enter your password' type='password' name='confirmPassword' onChange={handeChange} required/>
                 </FormControl>
                 <Box textAlign={'center'} mt={'10px'}>
                 <Button type='submit' colorScheme={'green'}>submit</Button>

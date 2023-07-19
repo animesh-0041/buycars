@@ -10,7 +10,7 @@ const Navbar = () => {
         </Box>
         <Box display={ 'flex'} w={'20%'} justifyContent={'space-around'}>
             <Link to={'/'}>Login</Link>
-            <Link>Cars</Link>
+            <Link to={'/cars'}>Cars</Link>
         </Box>
     </Box>
   )

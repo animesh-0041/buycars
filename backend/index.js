@@ -3,6 +3,7 @@ require('dotenv').config()
 const cors = require('cors')
 const { connection } = require('./db')
 const { userRoute } = require('./route/user.route')
+const { carRoutes } = require('./route/car.route')
 const app=express()
 app.use(express.json())
 
@@ -11,6 +12,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/api',userRoute)
+app.use('/car',carRoutes)
 
 
 app.listen(process.env.PORT||3001,async()=>{
