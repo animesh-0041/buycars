@@ -26,17 +26,7 @@ carRoutes.get("/",async(req,res)=>{
     }
 })
 
-carRoutes.get("/",async(req,res)=>{
-    const {name}=req.query
-    try {
-        console.log(model);
-        // const car=await CarModel.find()
-        // res.send(car)
-        
-    } catch (error) {
-     res.send(error)   
-    }
-})
+
 
 module.exports={
     carRoutes

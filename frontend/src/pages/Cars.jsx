@@ -1,10 +1,11 @@
-import { Box, Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay,Select,useDisclosure } from '@chakra-ui/react'
+import { Box, Button, FormControl, FormLabel, Heading, Img, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay,Select,useDisclosure } from '@chakra-ui/react'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 const Cars = () => {
   const { isOpen:addIsOpen, onOpen:addOnOpen, onClose:addOnClose } = useDisclosure();
   const [allCars,setAllcars]=useState([])
+  const [showcar,setShowCar]=useState([])
   const [preCar,setPreCar]=useState({})
   const [inventory,setInventory]=useState({
     kmOdometer:"",
@@ -28,18 +29,38 @@ const Cars = () => {
   }
 const handeSubmit=(e)=>{
 let obj={...inventory,...preCar}
-console.log(obj);
+    axios.post("http://localhost:8080/inventory",obj)
+    .then((res)=>{
+      console.log(res.data);
+      alert(res.data)
+      addOnClose()
+    })
+    .catch((er)=>{
+      console.log(er);
+    })
 }
 
 
  useEffect(()=>{
+
+  axios.get("http://localhost:8080/inventory").then((res)=>{
+
+    setShowCar(res.data);
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+ 
+   
+
+
   axios.get("http://localhost:8080/car").then((res)=>{
     setAllcars(res.data);
   })
   .catch((err)=>{
     console.log(err);
   })
- })
+ },[])
    
  
   return (
@@ -48,8 +69,17 @@ console.log(obj);
     <Button size={'sm'} letterSpacing={'5px'} colorScheme={'green'} onClick={(e)=>addOnOpen()}>ADD CARS</Button>
     </Box>
     
-
-<h1>fgfdgfhg</h1>
+<Box display={'grid'} gridTemplateColumns={'repeat(3, 1fr)'} gap={'10px'} >
+  {
+    showcar.map((el,i)=>{
+      return <Box shadow={'md'} p={'15px'} borderRadius={'15px'} key={i}>
+        <Img src='https://imgd.aeplcdn.com/664x374/n/cw/ec/45951/amaze-facelift-exterior-right-front-three-quarter.jpeg?isig=0&q=75'/>
+        <Heading size={'md'}>{el.modelName}</Heading>
+        <Heading size={'md'}>{el.priceNew}</Heading>
+      </Box>
+    })
+  }
+</Box>
 
 
 
@@ -67,7 +97,7 @@ console.log(obj);
              <Select onChange={handlecars}>
               {
                   allCars.map((el,i)=>{
-                    return <option key={i}>{el.modelName}</option>
+                    return <option key={i} value={el.modelName}>{el.modelName}</option>
                   })
               }
              </Select>

@@ -30,7 +30,7 @@ userRoute.post('/login',async(req,res)=>{
             bcrypt.compare(password, user.password, function (err, result) {
                 if(result){
                     const token = jwt.sign({userID: user._id}, "buyc");
-                    res.send({"msg":"Login Succesfull","token":token})
+                    res.send({"msg":"Login Succesfull","token":token,"UserID":user._id})
                 }
                 else{
                     res.send({"msg":"Invalid caredential"})
